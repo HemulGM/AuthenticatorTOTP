@@ -1,0 +1,4 @@
+[submodule "DelphiOTP"]
+	path = DelphiOTP
+	url = https://github.com/HemulGM/DelphiOTP
+	branch = main

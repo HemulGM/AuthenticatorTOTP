@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{1FEA18F2-52A2-48C7-A53F-987C975AADF7}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Authenticator.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\QRScan\QRScan.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Authenticator">
+        <MSBuild Projects="Authenticator.dproj"/>
+    </Target>
+    <Target Name="Authenticator:Clean">
+        <MSBuild Projects="Authenticator.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Authenticator:Make">
+        <MSBuild Projects="Authenticator.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="QRScan">
+        <MSBuild Projects="..\QRScan\QRScan.dproj"/>
+    </Target>
+    <Target Name="QRScan:Clean">
+        <MSBuild Projects="..\QRScan\QRScan.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="QRScan:Make">
+        <MSBuild Projects="..\QRScan\QRScan.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Authenticator;QRScan"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Authenticator:Clean;QRScan:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Authenticator:Make;QRScan:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
